@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AboutController;
-g
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,12 +15,9 @@ g
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/home', function () {
+    echo "<h2>Это домашняя страница.</h2>";
 });
 
-Route::get('/about', function () {
-    return view('about');
-});
-Route::get('/about',[AboutController::class,'about']);
+Route::get('/about',[AboutController::class,'about'])->middleware('check');
 Route::get('/contact',[ContactController::class,'index']);
