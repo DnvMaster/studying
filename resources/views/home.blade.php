@@ -40,7 +40,7 @@
         <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
 
         </div>
-        <h2>Страница о контактах</h2>
+        <h2>Домашняя страница</h2>
 
         <a href="{{ url('/') }}">{{ __('Главная') }}</a> |
         <a href="{{ route('about') }}">{{ __('О нас') }}</a> |
@@ -131,3 +131,4 @@
 </div>
 </body>
 </html>
+

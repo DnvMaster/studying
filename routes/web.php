@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +15,6 @@ use App\Http\Controllers\AboutController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/home', function () {
-    echo "<h2>Это домашняя страница.</h2>";
-});
-
-Route::get('/about',[AboutController::class,'about'])->middleware('check');
-Route::get('/contact',[ContactController::class,'index']);
+Route::get('/',[HomeController::class,'home']);
+Route::get('/about',[AboutController::class,'about'])->name('about');
+Route::get('/contact',[ContactController::class,'contact'])->name('contact');
