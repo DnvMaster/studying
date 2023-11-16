@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AboutController;
+g
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +22,5 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about');
 });
-
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('/about',[AboutController::class,'about']);
+Route::get('/contact',[ContactController::class,'index']);
