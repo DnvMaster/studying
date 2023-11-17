@@ -18,3 +18,7 @@ use App\Http\Controllers\HomeController;
 Route::get('/',[HomeController::class,'home']);
 Route::get('/about',[AboutController::class,'about'])->name('about');
 Route::get('/contact',[ContactController::class,'contact'])->name('contact');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
