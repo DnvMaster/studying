@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,9 @@ use App\Http\Controllers\HomeController;
 Route::get('/',[HomeController::class,'home']);
 Route::get('/about',[AboutController::class,'about'])->name('about');
 Route::get('/contact',[ContactController::class,'contact'])->name('contact');
+Route::get('/category/all',[CategoryController::class,'allCategory'])->name('all-category');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    // $user = \App\Models\User::all();
     $user = \Illuminate\Support\Facades\DB::table('users')->get();
     return view('dashboard',compact('user'));
 })->name('dashboard');

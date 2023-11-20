@@ -15,9 +15,7 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Главная') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('О нас') }}
-                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('all-category') }}">{{ __('Все категории') }}</x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Контакты') }}
                     </x-jet-nav-link>
