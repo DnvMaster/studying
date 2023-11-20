@@ -20,6 +20,7 @@ Route::get('/about',[AboutController::class,'about'])->name('about');
 Route::get('/contact',[ContactController::class,'contact'])->name('contact');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    $user = \App\Models\User::all();
+    // $user = \App\Models\User::all();
+    $user = \Illuminate\Support\Facades\DB::table('users')->get();
     return view('dashboard',compact('user'));
 })->name('dashboard');
