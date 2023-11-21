@@ -20,6 +20,7 @@ Route::get('/',[HomeController::class,'home']);
 Route::get('/about',[AboutController::class,'about'])->name('about');
 Route::get('/contact',[ContactController::class,'contact'])->name('contact');
 Route::get('/category/all',[CategoryController::class,'allCategory'])->name('all-category');
+Route::post('/category/add',[CategoryController::class,'addCategory'])->name('add-category');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $user = \Illuminate\Support\Facades\DB::table('users')->get();
