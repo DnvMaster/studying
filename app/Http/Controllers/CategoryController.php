@@ -6,12 +6,15 @@ use App\Models\Category;
 use Auth;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
     public function allCategory()
     {
-        return view('admin.category.index');
+        //$categories = Category::all();
+        $categories = Category::latest()->get();
+        return view('admin.category.index',compact('categories'));
     }
     public function addCategory(Request $request)
     {

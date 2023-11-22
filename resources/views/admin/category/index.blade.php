@@ -25,18 +25,27 @@
                                 <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">№</th>
-                                    <th scope="col">Имя</th>
-                                    <th scope="col">Эл.почта</th>
+                                    <th scope="col">Категория</th>
+                                    <th scope="col">Пользователь</th>
                                     <th scope="col">Дата регистрации</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                @php($i = 1)
+                                @foreach($categories as $category)
+                                    <tr>
+                                        <th scope="row">{{ $i++ }}</th>
+                                        <td>{{ $category->category_name }}</td>
+                                        <td>{{ $category->user_id }}</td>
+                                        <td>
+                                            @if($category->created_at == NULL)
+                                                <span class="text-primary">{{ __('Дата не установлена.') }}</span>
+                                            @else
+                                                {{ $category->created_at->diffforHumans() }}
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
