@@ -1,4 +1,3 @@
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -28,24 +27,29 @@
                                     <th scope="col">Категория</th>
                                     <th scope="col">Пользователь</th>
                                     <th scope="col">Дата регистрации</th>
+                                    <th scope="col">Действие</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <!-- @php($i = 1) -->
-                                @foreach($categories as $category)
-                                    <tr>
-                                        <th scope="row">{{ $categories->firstItem()+$loop->index }}</th>
-                                        <td>{{ $category->category_name }}</td>
-                                        <td>{{ $category->user->name }}</td>
-                                        <td>
-                                            @if($category->created_at == NULL)
-                                                <span class="text-primary">{{ __('Дата не установлена.') }}</span>
-                                            @else
-                                                {{ Carbon\Carbon::parse($category->created_at)->diffforHumans() }}
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                    <!-- @php($i = 1) -->
+                                    @foreach($categories as $category)
+                                        <tr>
+                                            <th scope="row">{{ $categories->firstItem()+$loop->index }}</th>
+                                            <td>{{ $category->category_name }}</td>
+                                            <td>{{ $category->user->name }}</td>
+                                            <td>
+                                                @if($category->created_at == NULL)
+                                                    <span class="text-primary">{{ __('Дата не установлена.') }}</span>
+                                                @else
+                                                    {{ Carbon\Carbon::parse($category->created_at)->diffforHumans() }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-info" href="{{ url('category/edit/'.$category->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i> {{ __('Изменить') }}</a>
+                                                <a class="btn btn-danger" href=""><i class="fa fa-trash" aria-hidden="true"></i> {{ __('Удалить') }}</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             {{ $categories->links() }}
@@ -65,7 +69,7 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
-                                <button type="submit" class="btn btn-success">{{ __('Добавить категорию') }}</button>
+                                <button type="submit" class="btn btn-success"><i class="fa fa-plus-square-o" aria-hidden="true"></i> {{ __('Добавить категорию') }}</button>
                             </form>
                         </div>
                     </div>

@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,13 @@ use App\Http\Controllers\CategoryController;
 Route::get('/',[HomeController::class,'home']);
 Route::get('/about',[AboutController::class,'about'])->name('about');
 Route::get('/contact',[ContactController::class,'contact'])->name('contact');
+# Category-controller
 Route::get('/category/all',[CategoryController::class,'allCategory'])->name('all-category');
 Route::post('/category/add',[CategoryController::class,'addCategory'])->name('add-category');
+Route::get('/category/edit/{id}',[CategoryController::class,'edit']);
+Route::post('/category/update/{id}',[CategoryController::class,'update']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    $user = \Illuminate\Support\Facades\DB::table('users')->get();
+    $user = DB::table('users')->get();
     return view('dashboard',compact('user'));
 })->name('dashboard');

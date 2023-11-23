@@ -43,4 +43,19 @@ class CategoryController extends Controller
         $category->save();
         return Redirect()->back()->with('success','Название категории успешно создано');
     }
+
+    public function edit($id)
+    {
+        $categories = Category::find($id);
+        return view('admin.category.edit',compact('categories'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $update = Category::find($id)->update([
+            'category_name' => $request->category_name,
+            'user_id' => Auth::user()->id,
+        ]);
+        return Redirect()->route('all-category')->with('success','Название категории успешно обновлено.');
+    }
 }
