@@ -13,8 +13,9 @@ class CategoryController extends Controller
     public function allCategory()
     {
         $categories = Category::latest()->paginate(5);
+        $trashCategory = Category::onlyTrashed()->latest()->paginate(3);
         // $categories = DB::table('categories')->latest()->paginate(4);
-        return view('admin.category.index',compact('categories'));
+        return view('admin.category.index',compact('categories','trashCategory'));
     }
     public function addCategory(Request $request)
     {
@@ -64,7 +65,13 @@ class CategoryController extends Controller
         $data['category_name'] = $request->category_name;
         $data['user_id'] = Auth::user()->id;
         DB::table('categories')->where('id',$id)->update($data);
-        
+
         return Redirect()->route('all-category')->with('success','Название категории успешно обновлено.');
+    }
+
+    public function softDelete($id)
+    {
+        $delete = Category::find($id)->delete();
+        return Redirect()->back()->with('success','Категория была успешно отправлена в корзину.');
     }
 }

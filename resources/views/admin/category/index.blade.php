@@ -46,7 +46,7 @@
                                             </td>
                                             <td>
                                                 <a class="btn btn-info" href="{{ url('category/edit/'.$category->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i> {{ __('Изменить') }}</a>
-                                                <a class="btn btn-danger" href=""><i class="fa fa-trash" aria-hidden="true"></i> {{ __('Удалить') }}</a>
+                                                <a class="btn btn-danger" href="{{ url('category/softdelete/'.$category->id)  }}"><i class="fa fa-trash" aria-hidden="true"></i> {{ __('В корзину') }}</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -76,5 +76,53 @@
                 </div>
             </div>
         </div>
+        <!-- Basket trach -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">{{ __('Файлы в корзине') }}</div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">№</th>
+                                    <th scope="col">Категория</th>
+                                    <th scope="col">Пользователь</th>
+                                    <th scope="col">Дата регистрации</th>
+                                    <th scope="col">Действие</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!-- @php($i = 1) -->
+                                @foreach($trashCategory as $category)
+                                    <tr>
+                                        <th scope="row">{{ $categories->firstItem()+$loop->index }}</th>
+                                        <td>{{ $category->category_name }}</td>
+                                        <td>{{ $category->user->name }}</td>
+                                        <td>
+                                            @if($category->created_at == NULL)
+                                                <span class="text-primary">{{ __('Дата не установлена.') }}</span>
+                                            @else
+                                                {{ Carbon\Carbon::parse($category->created_at)->diffforHumans() }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-danger" href=""><i class="fa fa-trash" aria-hidden="true"></i> {{ __('Удалить') }}</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            {{ $trashCategory->links() }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+
+                </div>
+            </div>
+        </div>
+        <!-- // Basket trach -->
     </div>
 </x-app-layout>
