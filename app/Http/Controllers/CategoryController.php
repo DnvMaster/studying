@@ -74,4 +74,16 @@ class CategoryController extends Controller
         $delete = Category::find($id)->delete();
         return Redirect()->back()->with('success','Категория была успешно отправлена в корзину.');
     }
+
+    public function restore($id)
+    {
+        $restore = Category::withTrashed()->find($id)->restore();
+        return Redirect()->back()->with('success','Категория была успешно восстановлена.');
+    }
+
+    public function delete($id)
+    {
+        $delete = Category::onlyTrashed()->find($id)->forceDelete();
+        return Redirect()->back()->with('success','Категория была успешно удалена.');
+    }
 }

@@ -108,7 +108,8 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a class="btn btn-danger" href=""><i class="fa fa-trash" aria-hidden="true"></i> {{ __('Удалить') }}</a>
+                                            <a class="btn btn-primary" href="{{ url('category/restore/'.$category->id) }}"><i class="fa fa-window-restore" aria-hidden="true"></i> {{ __('Восстановить') }}</a>
+                                            <a class="btn btn-danger" href="{{ url('category/delete/'.$category->id) }}"><i class="fa fa-trash" aria-hidden="true"></i> {{ __('Удалить') }}</a>
                                         </td>
                                     </tr>
                                 @endforeach

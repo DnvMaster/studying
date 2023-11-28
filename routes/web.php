@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BrandController;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -20,12 +21,17 @@ use Illuminate\Support\Facades\DB;
 Route::get('/',[HomeController::class,'home']);
 Route::get('/about',[AboutController::class,'about'])->name('about');
 Route::get('/contact',[ContactController::class,'contact'])->name('contact');
-# Category-controller
+# CategoryController
 Route::get('/category/all',[CategoryController::class,'allCategory'])->name('all-category');
 Route::post('/category/add',[CategoryController::class,'addCategory'])->name('add-category');
 Route::get('/category/edit/{id}',[CategoryController::class,'edit']);
 Route::post('/category/update/{id}',[CategoryController::class,'update']);
 Route::get('/category/softdelete/{id}',[CategoryController::class,'softDelete']);
+Route::get('/category/restore/{id}',[CategoryController::class,'restore']);
+Route::get('/category/delete/{id}',[CategoryController::class,'delete']);
+
+# BrandController
+Route::get('/brands/all',[BrandController::class,'allBrands'])->name('all-brands');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $user = DB::table('users')->get();
