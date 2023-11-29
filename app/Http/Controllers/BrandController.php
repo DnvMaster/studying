@@ -46,4 +46,10 @@ class BrandController extends Controller
         ]);
         return Redirect()->back()->with('success','Логотип бренда успешно сохранён.');
     }
+
+    public function edit($id)
+    {
+        $brands = Brand::find($id);
+        return view('admin.brands.edit',compact('brands'));
+    }
 }
