@@ -37,7 +37,7 @@
                                     <tr>
                                         <th scope="row">{{ $brands->firstItem()+$loop->index }}</th>
                                         <td>{{ $brand->brand_name }}</td>
-                                        <td><img src="" alt="{{ $brand->brand_name }}"></td>
+                                        <td><img src="{{ asset($brand->brand_image) }}" alt="{{ $brand->brand_name }}" style="height: 40px; width: 70px;"></td>
                                         <td>
                                             @if($brand->created_at == NULL)
                                                 <span class="text-primary">{{ __('Дата не установлена.') }}</span>
@@ -62,7 +62,7 @@
                     <div class="card">
                         <div class="card-header">{{ __('Добавить бренд') }}</div>
                         <div class="card-body">
-                            <form action="" method="post">
+                            <form action="{{ route('store-brand') }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label for="formGroupExampleInput">{{ __('Название бренда') }}</label>

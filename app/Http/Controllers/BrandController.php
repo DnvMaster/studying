@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class BrandController extends Controller
 {
@@ -11,5 +12,38 @@ class BrandController extends Controller
     {
         $brands = Brand::latest()->paginate(5);
         return view('admin.brands.index', compact('brands'));
+    }
+
+    public function storeBrand(Request $request)
+    {
+        // Ограничение символов в тексте
+        $validate = $request->validate([
+            'brand_name'=>'required|unique:brands|min:7',
+            'brand_name'=>'required|unique:brands|max:12',
+            'brand_image'=>'required|mimes:png,jpg,jpeg',
+        ],[
+            'brand_name.required'=>'Введите название бренда!',
+            'brand_name.max'=>'Название бренда должно быть не больше 12 символов.',
+            'brand_name.min'=>'Название бренда должно быть не меньше 7 символов.',
+            'brand_image.required' =>'Выберите логотип бренда!'
+        ]);
+
+        $brand_image = $request->file('brand_image');
+        // Генератор уникального идентификатора
+        $generate_image = hexdec(uniqid());
+        // Получаем исходное рассширение изображения
+        $image_ext = strtolower($brand_image->getClientOriginalExtension());
+        $image_name = $generate_image.'.'.$image_ext;
+        // Cохранение изображения в каталог Бренд
+        $up_location = 'images/brands/';
+        $last_image = $up_location.$image_name;
+        $brand_image->move($up_location,$image_name);
+
+        Brand::insert([
+            'brand_name'=> $request->brand_name,
+            'brand_image' => $last_image,
+            'created_at' => Carbon::now(),
+        ]);
+        return Redirect()->back()->with('success','Логотип бренда успешно сохранён.');
     }
 }
