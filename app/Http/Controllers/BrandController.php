@@ -13,7 +13,6 @@ class BrandController extends Controller
         $brands = Brand::latest()->paginate(5);
         return view('admin.brands.index', compact('brands'));
     }
-
     public function storeBrand(Request $request)
     {
         // Ограничение символов в тексте
@@ -46,10 +45,52 @@ class BrandController extends Controller
         ]);
         return Redirect()->back()->with('success','Логотип бренда успешно сохранён.');
     }
-
     public function edit($id)
     {
         $brands = Brand::find($id);
         return view('admin.brands.edit',compact('brands'));
+    }
+    public function update(Request $request, $id)
+    {
+        // Ограничение символов в тексте
+        $validate = $request->validate([
+            'brand_name'=>'required|min:7',
+            'brand_name'=>'required|max:12',
+
+        ],[
+            'brand_name.required'=>'Введите название бренда!',
+            'brand_name.max'=>'Название бренда должно быть не больше 12 символов.',
+            'brand_name.min'=>'Название бренда должно быть не меньше 7 символов.',
+            'brand_image.required' =>'Выберите логотип бренда!'
+        ]);
+        $old_image = $request->old_image;
+        $brand_image = $request->file('brand_image');
+        // Изменение названия логотипа с прежним логотипом
+        if ($brand_image)
+        {
+            // Генератор уникального идентификатора
+            $generate_image = hexdec(uniqid());
+            // Получаем исходное рассширение изображения
+            $image_ext = strtolower($brand_image->getClientOriginalExtension());
+            $image_name = $generate_image.'.'.$image_ext;
+            // Cохранение изображения в каталог Бренд
+            $up_location = 'images/brands/';
+            $last_image = $up_location.$image_name;
+            $brand_image->move($up_location,$image_name);
+            unlink($old_image);
+
+            Brand::find($id)->update([
+                'brand_name'=> $request->brand_name,
+                'brand_image' => $last_image,
+                'created_at' => Carbon::now(),
+            ]);
+            return Redirect()->back()->with('success','Логотип бренда успешно обновлён.');
+        } else {
+            Brand::find($id)->update([
+                'brand_name'=> $request->brand_name,
+                'created_at' => Carbon::now(),
+            ]);
+            return Redirect()->back()->with('success','Логотип бренда успешно обновлён.');
+        }
     }
 }

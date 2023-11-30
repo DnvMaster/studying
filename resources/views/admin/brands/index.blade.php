@@ -45,7 +45,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a class="btn btn-info" href="{{ url('brand/edit/'.$brand->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i> {{ __('Изменить') }}</a>
+                                            <a class="btn btn-info" href="{{ url('brand/edit/'.$brand->id) }}"><i class="fa fa-pencil" aria-hidden="true"></i> {{ __('Редактировать') }}</a>
                                             <a class="btn btn-danger" href="{{ url('brand/delete/'.$brand->id)  }}"><i class="fa fa-trash" aria-hidden="true"></i> {{ __('Удалить') }}</a>
                                         </td>
                                     </tr>
