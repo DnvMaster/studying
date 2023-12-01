@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Image;
 
 class BrandController extends Controller
 {
@@ -29,14 +30,20 @@ class BrandController extends Controller
 
         $brand_image = $request->file('brand_image');
         // Генератор уникального идентификатора
-        $generate_image = hexdec(uniqid());
+        // $generate_image = hexdec(uniqid());
         // Получаем исходное рассширение изображения
-        $image_ext = strtolower($brand_image->getClientOriginalExtension());
-        $image_name = $generate_image.'.'.$image_ext;
+        // $image_ext = strtolower($brand_image->getClientOriginalExtension());
+        // $image_name = $generate_image.'.'.$image_ext;
         // Cохранение изображения в каталог Бренд
-        $up_location = 'images/brands/';
-        $last_image = $up_location.$image_name;
-        $brand_image->move($up_location,$image_name);
+        // $up_location = 'images/brands/';
+        // $last_image = $up_location.$image_name;
+        // $brand_image->move($up_location,$image_name);
+
+        # Intervention Image package
+        $generate_image = hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();
+        Image::make($brand_image)->resize(300,200)->save('images/brands/'.$generate_image);
+        $last_image = 'images/brands/'.$generate_image;
+
 
         Brand::insert([
             'brand_name'=> $request->brand_name,
