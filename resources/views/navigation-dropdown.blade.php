@@ -17,6 +17,7 @@
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('all-category') }}">{{ __('Все категории') }}</x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('all-brands') }}">{{ __('Бренды') }}</x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('all-images') }}">{{ __('Изображения') }}</x-jet-nav-link>
                 </div>
             </div>
 

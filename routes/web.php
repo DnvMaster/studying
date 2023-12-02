@@ -6,6 +6,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -36,6 +37,9 @@ Route::post('/brand/add',[BrandController::class,'storeBrand'])->name('store-bra
 Route::get('brand/edit/{id}',[BrandController::class,'edit']);
 Route::post('brand/update/{id}',[BrandController::class,'update']);
 Route::get('/brand/delete/{id}',[BrandController::class,'delete']);
+
+# ImageController
+Route::get('/image/all',[ImageController::class,'imagesAll'])->name('all-images');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $user = DB::table('users')->get();
