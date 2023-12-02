@@ -40,6 +40,7 @@ Route::get('/brand/delete/{id}',[BrandController::class,'delete']);
 
 # ImageController
 Route::get('/image/all',[ImageController::class,'imagesAll'])->name('all-images');
+Route::post('/image/add',[ImageController::class,'imagesAdd'])->name('add-images');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $user = DB::table('users')->get();
