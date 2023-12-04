@@ -19,6 +19,12 @@ use Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Проверка и подтверждение электронной почты
+Route::get('/email/verify', function ()
+{
+    return view('auth.verify-email');
+})->middleware(['auth'])->name('verification.notice');
+// Controllers
 Route::get('/',[HomeController::class,'home']);
 Route::get('/about',[AboutController::class,'about'])->name('about');
 Route::get('/contact',[ContactController::class,'contact'])->name('contact');

@@ -11,11 +11,7 @@
                         <div class="card-header p-3 mb-2 bg-primary text-white">{{ __('Все изображения') }}</div>
                         <div class="card-body">
                             @foreach($images as $img)
-                                <div class="col-4 mt-3">
-                                    <div class="card">
-                                        <img src="{{ asset($img->image) }}" alt="{{ asset($img->image) }}">
-                                    </div>
-                                </div>
+                                <img src="{{ asset($img->image) }}" alt="{{ asset($img->image) }}" class="rounded float-left mt-4 ml-4">
                             @endforeach
                         </div>
                     </div>
