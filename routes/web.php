@@ -24,10 +24,12 @@ Route::get('/email/verify', function ()
 {
     return view('auth.verify-email');
 })->middleware(['auth'])->name('verification.notice');
+
 // Controllers
 Route::get('/',[HomeController::class,'home']);
 Route::get('/about',[AboutController::class,'about'])->name('about');
 Route::get('/contact',[ContactController::class,'contact'])->name('contact');
+
 # CategoryController
 Route::get('/category/all',[CategoryController::class,'allCategory'])->name('all-category');
 Route::post('/category/add',[CategoryController::class,'addCategory'])->name('add-category');
@@ -48,7 +50,8 @@ Route::get('/brand/delete/{id}',[BrandController::class,'delete']);
 Route::get('/image/all',[ImageController::class,'imagesAll'])->name('all-images');
 Route::post('/image/add',[ImageController::class,'imagesAdd'])->name('add-images');
 
+# Admin panel
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $user = DB::table('users')->get();
-    return view('dashboard',compact('user'));
+    return view('admin.index',compact('user'));
 })->name('dashboard');
