@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\DB;
 
 /*
@@ -55,3 +56,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $user = DB::table('users')->get();
     return view('admin.index',compact('user'));
 })->name('dashboard');
+
+Route::get('/user/logout',[UsersController::class,'logout'])->name('user-logout');
