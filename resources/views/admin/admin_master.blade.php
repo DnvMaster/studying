@@ -125,7 +125,7 @@
                                     </a>
                                 </li>
                                 <li class="dropdown-footer">
-                                    <a class="text-center" href="#"> View All </a>
+                                    <a class="text-center" href="#"> {{ __('Показать все') }} </a>
                                 </li>
                             </ul>
                         </li>
@@ -169,8 +169,6 @@
                     </ul>
                 </div>
             </nav>
-
-
         </header>
 
 

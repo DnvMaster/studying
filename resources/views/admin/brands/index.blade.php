@@ -1,10 +1,6 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Бренды') }}
-        </h2>
-    </x-slot>
+@extends('admin.admin_master')
 
+@section('admin')
     <div class="py-12">
         <div class="container">
             <div class="row">
@@ -18,8 +14,8 @@
                                 </button>
                             </div>
                         @endif
-                        <div class="card-header">{{ __('Все бренды') }}</div>
                         <div class="card-body">
+                            <div class="card-header">{{ __('Все бренды') }}</div>
                             <table class="table">
                                 <thead class="thead-dark">
                                 <tr>
@@ -31,7 +27,6 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <!-- @php($i = 1) -->
                                 @foreach($brands as $brand)
                                     <tr>
                                         <th scope="row">{{ $brands->firstItem()+$loop->index }}</th>
@@ -56,10 +51,10 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header">{{ __('Добавить бренд') }}</div>
+
                         <div class="card-body">
                             <form action="{{ route('store-brand') }}" method="post" enctype="multipart/form-data">
                                 @csrf
@@ -85,5 +80,5 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
 

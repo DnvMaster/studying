@@ -41,31 +41,33 @@
                          data-parent="#sidebar-menu">
                         <div class="sub-menu">
 
+                            <li  class="active" >
+                                <a class="sidenav-item-link" href="{{ route('all-sliders') }}">
+                                    <span class="nav-text">{{ __('Слайды') }}</span>
 
+                                </a>
+                            </li>
 
                             <li  class="active" >
-                                <a class="sidenav-item-link" href="index.html">
-                                    <span class="nav-text">Ecommerce</span>
+                                <a class="sidenav-item-link" href="{{ route('all-brands') }}">
+                                    <span class="nav-text">{{ __('О нас') }}</span>
 
                                 </a>
                             </li>
 
-
-
-
-
-
-                            <li >
-                                <a class="sidenav-item-link" href="analytics.html">
-                                    <span class="nav-text">Analytics</span>
-
-                                    <span class="badge badge-success">new</span>
+                            <li  class="active" >
+                                <a class="sidenav-item-link" href="{{ route('all-brands') }}">
+                                    <span class="nav-text">{{ __('Портфолио') }}</span>
 
                                 </a>
                             </li>
 
+                            <li  class="active" >
+                                <a class="sidenav-item-link" href="{{ route('all-brands') }}">
+                                    <span class="nav-text">{{ __('Бренды') }}</span>
 
-
+                                </a>
+                            </li>
 
                         </div>
                     </ul>

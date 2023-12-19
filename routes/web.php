@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\DB;
 
@@ -51,6 +52,10 @@ Route::get('/brand/delete/{id}',[BrandController::class,'delete']);
 Route::get('/image/all',[ImageController::class,'imagesAll'])->name('all-images');
 Route::post('/image/add',[ImageController::class,'imagesAdd'])->name('add-images');
 
+#SliderController
+Route::get('/sliders/all',[SliderController::class, 'allSliders'])->name('all-sliders');
+Route::get('add/slide',[SliderController::class,'addSlide'])->name('add-slide');
+Route::post('store/slide',[SliderController::class,'storeSlide'])->name('store-slide');
 # Admin panel
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $user = DB::table('users')->get();
