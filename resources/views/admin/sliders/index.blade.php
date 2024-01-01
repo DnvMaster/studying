@@ -20,12 +20,12 @@
                             <table class="table">
                                 <thead class="thead-dark">
                                 <tr>
-                                    <th scope="col">{{ __('№') }}</th>
-                                    <th scope="col">{{ __('Заголовок слайда') }}</th>
-                                    <th scope="col">{{ __('Описание слайда') }}</th>
-                                    <th scope="col">{{ __('Изображение слайда') }}</th>
-                                    <th scope="col">{{ __('Дата создания') }}</th>
-                                    <th scope="col">{{ __('Действие') }}</th>
+                                    <th scope="col" width="5%">{{ __('№') }}</th>
+                                    <th scope="col" width="15%">{{ __('Заголовок слайда') }}</th>
+                                    <th scope="col" width="15%">{{ __('Описание слайда') }}</th>
+                                    <th scope="col" width="15%">{{ __('Изображение слайда') }}</th>
+                                    <th scope="col" width="15%">{{ __('Дата создания') }}</th>
+                                    <th scope="col" width="15%">{{ __('Действие') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>

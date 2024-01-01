@@ -146,19 +146,19 @@
 
                                 <li>
                                     <a href="profile.html">
-                                        <i class="mdi mdi-account"></i> My Profile
+                                        <i class="mdi mdi-account"></i> {{ __('Мой профиль') }}
                                     </a>
                                 </li>
                                 <li>
                                     <a href="email-inbox.html">
-                                        <i class="mdi mdi-email"></i> Message
+                                        <i class="mdi mdi-email"></i> {{ __('Сообщение') }}
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#"> <i class="mdi mdi-diamond-stone"></i> Projects </a>
+                                    <a href="#"> <i class="mdi mdi-diamond-stone"></i> {{ __('Проекты') }} </a>
                                 </li>
                                 <li>
-                                    <a href="#"> <i class="mdi mdi-settings"></i> Account Setting </a>
+                                    <a href="#"> <i class="mdi mdi-settings"></i> {{ __('Настройкм аккаунта') }} </a>
                                 </li>
 
                                 <li class="dropdown-footer">
@@ -181,12 +181,12 @@
         <footer class="footer mt-auto">
             <div class="copyright bg-white">
                 <p>
-                    &copy; <span id="copy-year">2019</span> Copyright Sleek Dashboard Bootstrap Template by
+                    &copy; <span id="copy-year">{{ __('2024') }}</span> {{ __('Copyright DnvMaster by') }}
                     <a
                         class="text-primary"
-                        href="http://www.iamabdus.com/"
+                        href="https://dnvmaster.pro/"
                         target="_blank"
-                    >Abdus</a
+                    >{{ __('DnvMaster') }}</a
                     >.
                 </p>
             </div>

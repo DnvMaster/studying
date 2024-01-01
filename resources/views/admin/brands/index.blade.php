@@ -4,7 +4,7 @@
     <div class="py-12">
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="card">
                         @if(session('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -51,32 +51,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">{{ __('Добавить бренд') }}</div>
-
-                        <div class="card-body">
-                            <form action="{{ route('store-brand') }}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="formGroupExampleInput">{{ __('Название бренда') }}</label>
-                                    <input type="text" name="brand_name" class="form-control" id="formGroupExampleInput">
-                                    @error('brand_name')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="formGroupExampleInput">{{ __('Логотип бренда') }}</label>
-                                    <input type="file" name="brand_image" class="form-control-file" id="formGroupExampleInput">
-                                    @error('brand_image')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <button type="submit" class="btn btn-success"><i class="fa fa-file-image-o" aria-hidden="true"></i></i>&nbsp;&nbsp;{{ __('Добавить бренд') }}</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <a href="{{ route('add-brand') }}"><button type="submit" class="btn btn-success mt-5 ml-5"><i class="fa fa-file-image-o" aria-hidden="true"></i></i>&nbsp;&nbsp;{{ __('Добавить бренд') }}</button></a>
             </div>
         </div>
     </div>
