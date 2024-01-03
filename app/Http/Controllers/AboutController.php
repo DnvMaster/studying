@@ -37,9 +37,18 @@ class AboutController extends Controller
         $abouts = About::find($id);
         return view('admin.about.edit',compact('abouts'));
     }
+    public function update(Request $request, $id)
+    {
+        $update = About::find($id)->update([
+            'title' => $request->title,
+            'short' => $request->short,
+            'long' => $request->long,
+        ]);
+        return Redirect()->route('all-about')->with('success','Раздел О нас, был успешно обновлён.');
+    }
     public function delete($id)
     {
         About::find($id)->delete();
-        return Redirect()->back()->with('success','Раздел о нас успешно удалён.');
+        return Redirect()->route('all-about')->with('success','Раздел о нас успешно удалён.');
     }
 }

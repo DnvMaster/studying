@@ -62,6 +62,7 @@ Route::get('/about/all',[AboutController::class,'aboutAll'])->name('all-about');
 Route::get('/about/add',[AboutController::class,'aboutAdd'])->name('add-about');
 Route::post('/about/store',[AboutController::class,'storeAbout'])->name('store-about');
 Route::get('/about/edit/{id}',[AboutController::class,'edit']);
+Route::post('/about/update/{id}',[AboutController::class,'update']);
 Route::get('/about/delete/{id}',[AboutController::class,'delete']);
 
 
