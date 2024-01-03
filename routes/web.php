@@ -29,7 +29,6 @@ Route::get('/email/verify', function ()
 
 // Controllers
 Route::get('/',[HomeController::class,'home']);
-Route::get('/about',[AboutController::class,'about'])->name('about');
 Route::get('/contact',[ContactController::class,'contact'])->name('contact');
 
 # CategoryController
@@ -45,8 +44,8 @@ Route::get('/category/delete/{id}',[CategoryController::class,'delete']);
 Route::get('/brands/all',[BrandController::class,'allBrands'])->name('all-brands');
 Route::post('/brand/add',[BrandController::class,'storeBrand'])->name('store-brand');
 Route::get('/brand/add',[BrandController::class,'addBrand'])->name('add-brand');
-Route::get('brand/edit/{id}',[BrandController::class,'edit']);
-Route::post('brand/update/{id}',[BrandController::class,'update']);
+Route::get('/brand/edit/{id}',[BrandController::class,'edit']);
+Route::post('/brand/update/{id}',[BrandController::class,'update']);
 Route::get('/brand/delete/{id}',[BrandController::class,'delete']);
 
 # ImageController
@@ -55,8 +54,17 @@ Route::post('/image/add',[ImageController::class,'imagesAdd'])->name('add-images
 
 #SliderController
 Route::get('/sliders/all',[SliderController::class, 'allSliders'])->name('all-sliders');
-Route::get('add/slide',[SliderController::class,'addSlide'])->name('add-slide');
-Route::post('store/slide',[SliderController::class,'storeSlide'])->name('store-slide');
+Route::get('/add/slide',[SliderController::class,'addSlide'])->name('add-slide');
+Route::post('/store/slide',[SliderController::class,'storeSlide'])->name('store-slide');
+
+# AboutController
+Route::get('/about/all',[AboutController::class,'aboutAll'])->name('all-about');
+Route::get('/about/add',[AboutController::class,'aboutAdd'])->name('add-about');
+Route::post('/about/store',[AboutController::class,'storeAbout'])->name('store-about');
+Route::get('/about/edit/{id}',[AboutController::class,'edit']);
+Route::get('/about/delete/{id}',[AboutController::class,'delete']);
+
+
 # Admin panel
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     $user = DB::table('users')->get();

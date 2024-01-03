@@ -50,14 +50,14 @@
 
                             <li  class="active" >
                                 <a class="sidenav-item-link" href="{{ route('all-brands') }}">
-                                    <span class="nav-text">{{ __('О нас') }}</span>
+                                    <span class="nav-text">{{ __('Бренды') }}</span>
 
                                 </a>
                             </li>
 
                             <li  class="active" >
-                                <a class="sidenav-item-link" href="{{ route('all-brands') }}">
-                                    <span class="nav-text">{{ __('Портфолио') }}</span>
+                                <a class="sidenav-item-link" href="{{ route('all-about') }}">
+                                    <span class="nav-text">{{ __('О нас') }}</span>
 
                                 </a>
                             </li>

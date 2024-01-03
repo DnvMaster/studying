@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -10,8 +12,34 @@ class AboutController extends Controller
     {
         $this->middleware('auth');
     }
-    public function about()
+    public function aboutAll()
     {
-        return view('about');
+        $abouts = About::latest()->get();
+        return view('admin.about.index',compact('abouts'));
+
+    }
+    public function aboutAdd()
+    {
+        return view('admin.about.add_about');
+    }
+    public function storeAbout(Request $request)
+    {
+        About::insert([
+            'title'=>$request->title,
+            'short'=>$request->short,
+            'long'=>$request->long,
+            'created_at'=>Carbon::now(),
+        ]);
+        return Redirect()->route('all-about')->with('success','Раздел был успешно создан');
+    }
+    public function edit($id)
+    {
+        $abouts = About::find($id);
+        return view('admin.about.edit',compact('abouts'));
+    }
+    public function delete($id)
+    {
+        About::find($id)->delete();
+        return Redirect()->back()->with('success','Раздел о нас успешно удалён.');
     }
 }
